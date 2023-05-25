@@ -7,11 +7,12 @@ import { MoviesModule } from './movies/movies.module';
 @Module({
   imports: [
     MoviesModule,
-    MongooseModule.forRoot(
-      `mongodb+srv://IgorSme:3hd24y8lLZt2Ym3c@igorsme.uenhe4p.mongodb.net/?retryWrites=true&w=majority`,
-    ),
+    // MongooseModule.forRoot(
+      
+    // ),
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
+console.log('test');
