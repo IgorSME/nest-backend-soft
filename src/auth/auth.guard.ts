@@ -21,13 +21,9 @@ export class AuthGuard implements CanActivate {
             if (bearer !== "Bearer" || !token) {
                         throw new UnauthorizedException( "Not authorized");
             }
-            console.log('request', process.env.SECRET_KEY_ACCESS);
          
-                const user =  this.jwtService.verify(token, {secret: process.env.SECRET_KEY_ACCESS});
-           
-            console.log('user', user);
-            
-            
+            const user =  this.jwtService.verify(token, {secret: process.env.SECRET_KEY_ACCESS});
+
              request.user = user
              return true;
 
