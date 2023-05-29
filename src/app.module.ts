@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { MoviesModule } from './movies/movies.module';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { UserModule } from './user/user.module';
     MoviesModule,
     MongooseModule.forRoot(process.env.DB_HOST),
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

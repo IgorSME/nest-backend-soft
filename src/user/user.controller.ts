@@ -2,6 +2,7 @@ import { Body, Controller, Get, Post, Req, UseGuards, ValidationPipe } from '@ne
 import { UserService } from './user.service';
 import { LoginUserDto, RefreshTokenDto, RegisterUserDto } from './dto/user.dto';
 import { User } from './schemas/user.schema';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('auth')
 export class UserController {
@@ -22,6 +23,7 @@ export class UserController {
     }
 
     @Post('refresh')
+    @UseGuards(AuthGuard)
     async refreshAccessToken(
         @Body(ValidationPipe) refreshTokenDto: RefreshTokenDto
     ): Promise<User> {
@@ -29,11 +31,13 @@ export class UserController {
     }
 
     @Get('current')
+    @UseGuards(AuthGuard)
     async getCurrentUser(@Req() req):Promise<User> {
         return await this.userService.getCurrent(req)
     }
 
     @Post('logout')
+    @UseGuards(AuthGuard)
     async logOut(@Req() req): Promise<User> {
         return this.userService.logOutUser(req)
     }
