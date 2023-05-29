@@ -2,13 +2,15 @@ import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from
 import * as jwt from 'jsonwebtoken';
 
 import { JwtService } from '@nestjs/jwt';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 
 @Injectable()
 export class AuthGuard implements CanActivate {
     constructor ( private readonly jwtService: JwtService){}
 
-    canActivate(context: ExecutionContext): boolean {
+     canActivate(context: ExecutionContext): boolean {
         
         const request = context.switchToHttp().getRequest();
         try {
@@ -19,8 +21,10 @@ export class AuthGuard implements CanActivate {
             if (bearer !== "Bearer" || !token) {
                         throw new UnauthorizedException( "Not authorized");
             }
-            console.log('request', request.user);
-            const user = this.jwtService.verify(token);
+            console.log('request', process.env.SECRET_KEY_ACCESS);
+         
+                const user =  this.jwtService.verify(token, {secret: process.env.SECRET_KEY_ACCESS});
+           
             console.log('user', user);
             
             
