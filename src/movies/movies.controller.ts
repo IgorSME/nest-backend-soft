@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { AddMovieDto } from './dto/add-movie.dto';
 import { MoviesService } from './movies.service';
-import { Movie } from './schemas/movie.schema';
+import { Movie } from 'src/entities/movie.entity'; 
 import { AuthGuard } from 'src/auth/auth.guard';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 

@@ -5,7 +5,7 @@ require('dotenv').config();
 const { SECRET_KEY_ACCESS = "", SECRET_KEY_REFRESH = "" } = process.env;
 
 
-const createToken = (_id:string) => {
+const createToken = (_id:number) => {
   const payload = {
     id: _id,
   };

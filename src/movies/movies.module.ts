@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { MoviesController } from './movies.controller';
 import { MoviesService } from './movies.service';
-import { MongooseModule } from '@nestjs/mongoose';
-import { Movie, MovieSchema } from './schemas/movie.schema';
+import { Movie } from '../entities/movie.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Movie.name, schema: MovieSchema }]),
+    TypeOrmModule.forFeature([Movie]),
     JwtModule.register({  secret: process.env.ACCESS_TOKEN_PRIVATE_KEY || 'SECRET',
   signOptions: {
     expiresIn: '24h',

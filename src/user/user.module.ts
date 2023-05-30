@@ -3,10 +3,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { JwtModule } from '@nestjs/jwt';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
-import { User, UserSchema } from './schemas/user.schema';
+import { User } from '../entities/user.entity'; 
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 
 @Module({
-  imports: [MongooseModule.forFeature([{name: 'User', schema: UserSchema}]), JwtModule.register({  secret: process.env.ACCESS_TOKEN_PRIVATE_KEY || 'SECRET',
+  imports: [TypeOrmModule.forFeature([User]), 
+  JwtModule.register({  secret: process.env.ACCESS_TOKEN_PRIVATE_KEY || 'SECRET',
   signOptions: {
     expiresIn: '24h',
   },})],

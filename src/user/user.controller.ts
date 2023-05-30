@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Req, UseGuards, ValidationPipe } from '@nestjs/common';
 import { UserService } from './user.service';
 import { LoginUserDto, RefreshTokenDto, RegisterUserDto } from './dto/user.dto';
-import { User } from './schemas/user.schema';
+import { User } from 'src/entities/user.entity'; 
 import { AuthGuard } from 'src/auth/auth.guard';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
